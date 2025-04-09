@@ -136,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 6, 2025</p>
+      <p class="date-modified">April 9, 2025</p>
     </div>
   </div>
     
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><span class="uured-bold">Copying code from your friend constitutes plagiarism. DO NOT DO THIS</span>.</li>
 </ul></li>
 </ol>
-<div id="cell-3" class="cell" data-execution_count="21">
+<div id="cell-3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -199,10 +199,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.read.option(<span class="st">"header"</span>, <span class="st">"true"</span>).option(<span class="st">"inferSchema"</span>, <span class="st">"true"</span>).option(<span class="st">"multiLine"</span>,<span class="st">"true"</span>).option(<span class="st">"escape"</span>, <span class="st">"</span><span class="ch">\"</span><span class="st">"</span>).csv(<span class="st">"./data/lightcast_job_postings.csv"</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#df.printSchema() # comment this line when rendering the submission</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># df.printSchema() # comment this line when rendering the submission</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># df.show(5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
+<pre><code>Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/04/09 15:15:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+                                                                                </code></pre>
 </div>
 </div>
 </section>
@@ -221,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Assemble features</strong> into a single vector using <strong>VectorAssembler</strong>.</li>
 <li><strong>Split the data</strong> into training and testing sets.</li>
 </ol>
-<div id="cell-5" class="cell" data-execution_count="22">
+<div id="cell-5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.feature <span class="im">import</span> StringIndexer, OneHotEncoder, VectorAssembler</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml <span class="im">import</span> Pipeline</span>
@@ -289,7 +292,7 @@ only showing top 5 rows
 <li>Set a random seed for reproducibility.</li>
 <li>You can choose a number for splitting to your liking, justify your choice.</li>
 </ul>
-<div id="cell-7" class="cell" data-execution_count="23">
+<div id="cell-7" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>train_data, test_data <span class="op">=</span> data.randomSplit([<span class="fl">0.8</span>, <span class="fl">0.2</span>], seed<span class="op">=</span><span class="dv">777</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((train_data.count(), <span class="bu">len</span>(train_data.columns)))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((test_data.count(), <span class="bu">len</span>(test_data.columns)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -300,7 +303,7 @@ only showing top 5 rows
 <pre><code>(15745, 134)</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>[Stage 108:&gt;                                                        (0 + 1) / 1]</code></pre>
+<pre><code>[Stage 35:&gt;                                                         (0 + 1) / 1]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(4019, 134)</code></pre>
@@ -320,6 +323,28 @@ only showing top 5 rows
 <li>Create a DataFrame to display the coefficients, standard errors, t-values, p-values, and confidence intervals.</li>
 <li>Interpret the coefficients and their significance and explain the model performance metrics.</li>
 </ul>
+<div id="cell-9" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-stderr">
+<pre><code>25/04/09 15:55:09 WARN Instrumentation: [ad768bcc] regParam is zero, which might cause numerical instability and overfitting.
+[Stage 39:&gt;                                                         (0 + 1) / 1]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--- Regression Summary ---
+Coefficient Standard Errors: ['82.7579', '416.4888', '5021.0075', '5058.9374', '5065.6604', '5062.0326', '5062.8217', '5096.9337', '5118.1055', '5390.6087', '6111.7597', '7351.2224', '5096.4015']
+T Values: ['64.4368', '44.7807', '1.9889', '6.7277', '8.1052', '4.1305', '4.9425', '2.3804', '1.7939', '1.9406', '0.5319', '0.3638', '7.4319']
+P Values: ['0.0000', '0.0000', '0.0467', '0.0000', '0.0000', '0.0000', '0.0000', '0.0173', '0.0728', '0.0523', '0.5948', '0.7160', '0.0000']
+---This is Diagnostic check, No need to print it in the final doc---
+Length of features: 4
+Length of coefs: 13
+Length of se: 13
+Length of tvals: 13
+Length of pvals: 13</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>                                                                                </code></pre>
+</div>
+</div>
 <section id="generalized-linear-regression-summary" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="generalized-linear-regression-summary"><span class="header-section-number">4.1</span> Generalized Linear Regression Summary</h2>
 <p>The summary of the Generalized Linear Regression model provides important insights into the model’s performance and the significance of each feature. The coefficients indicate the relationship between each feature and the target variable (salary), while the standard errors, t-values, and p-values help assess the reliability of these estimates.</p>
@@ -327,48 +352,47 @@ only showing top 5 rows
 <li>Please interpret them in the context of your data and model.</li>
 <li>Feature Names are purposefully not printed in the output. You can use the <code>features</code> variable to print them out.</li>
 </ul>
-<div id="cell-10" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.regression <span class="im">import</span> LinearRegression</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> Row</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Fit indexer separately to get labels (used in encoder)</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>indexer_model <span class="op">=</span> StringIndexer(inputCol<span class="op">=</span><span class="st">'LOT_V6_SPECIALIZED_OCCUPATION_NAME'</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                              outputCol<span class="op">=</span><span class="st">'LOT_V6_SPECIALIZED_OCCUPATION_NAME_idx'</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                              handleInvalid<span class="op">=</span><span class="st">'skip'</span>).fit(df)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>occupation_labels <span class="op">=</span> indexer_model.labels  <span class="co"># List of category names</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Build expanded occupation feature names (excluding the base class if dropLast=True)</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: OneHotEncoder by default uses dropLast=True</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>expanded_occupation_features <span class="op">=</span> [<span class="ss">f"Occupation=</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> label <span class="kw">in</span> occupation_labels[<span class="dv">1</span>:]]</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Reconstruct full feature names in the same order as assembled</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> [<span class="st">'MIN_YEARS_EXPERIENCE'</span>, <span class="st">'MIN_EDULEVELS'</span>] <span class="op">+</span> expanded_occupation_features</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Fit linear regression model</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> LinearRegression(featuresCol<span class="op">=</span><span class="st">'features'</span>, labelCol<span class="op">=</span><span class="st">'SALARY'</span>, regParam<span class="op">=</span><span class="fl">0.1</span>)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>lr_model <span class="op">=</span> lr.fit(train_data)</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> lr_model.summary</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Extract coefficients and build readable DataFrame</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">'Intercept'</span>] <span class="op">+</span> feature_names</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> [lr_model.intercept] <span class="op">+</span> [<span class="bu">float</span>(c) <span class="cf">for</span> c <span class="kw">in</span> lr_model.coefficients]</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> [<span class="va">None</span>] <span class="op">+</span> [<span class="bu">float</span>(s) <span class="cf">for</span> s <span class="kw">in</span> summary.coefficientStandardErrors]</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>tvals <span class="op">=</span> [<span class="va">None</span>] <span class="op">+</span> [<span class="bu">float</span>(t) <span class="cf">for</span> t <span class="kw">in</span> summary.tValues]</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>pvals <span class="op">=</span> [<span class="va">None</span>] <span class="op">+</span> [<span class="bu">float</span>(p) <span class="cf">for</span> p <span class="kw">in</span> summary.pValues]</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [Row(</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    Feature<span class="op">=</span>f,</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    Coefficient<span class="op">=</span>c,</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    StdError<span class="op">=</span>s,</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    TValue<span class="op">=</span>t,</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    PValue<span class="op">=</span>p</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>) <span class="cf">for</span> f, c, s, t, p <span class="kw">in</span> <span class="bu">zip</span>(features, coefs, se, tvals, pvals)]</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>coefs_df <span class="op">=</span> spark.createDataFrame(rows)</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>coefs_df.show(truncate<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-11" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.regression <span class="im">import</span> LinearRegression</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> Row</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit indexer separately to get labels (used in encoder)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>indexer_model <span class="op">=</span> StringIndexer(inputCol<span class="op">=</span><span class="st">'LOT_V6_SPECIALIZED_OCCUPATION_NAME'</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                              outputCol<span class="op">=</span><span class="st">'LOT_V6_SPECIALIZED_OCCUPATION_NAME_idx'</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                              handleInvalid<span class="op">=</span><span class="st">'skip'</span>).fit(df)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>occupation_labels <span class="op">=</span> indexer_model.labels  <span class="co"># List of category names</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Building expanded occupation feature names (excluding the base class if dropLast=True)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>expanded_occupation_features <span class="op">=</span> [<span class="ss">f"Occupation=</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> label <span class="kw">in</span> occupation_labels[<span class="dv">1</span>:]]</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Reconstruct full feature names in the same order as assembled</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> [<span class="st">'MIN_YEARS_EXPERIENCE'</span>, <span class="st">'MIN_EDULEVELS'</span>] <span class="op">+</span> expanded_occupation_features</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear regression model</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> LinearRegression(featuresCol<span class="op">=</span><span class="st">'features'</span>, labelCol<span class="op">=</span><span class="st">'SALARY'</span>, regParam<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>lr_model <span class="op">=</span> lr.fit(train_data)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> lr_model.summary</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Extract coefficients and build readable DataFrame</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">'Intercept'</span>] <span class="op">+</span> feature_names</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> [lr_model.intercept] <span class="op">+</span> [<span class="bu">float</span>(c) <span class="cf">for</span> c <span class="kw">in</span> lr_model.coefficients]</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> [<span class="va">None</span>] <span class="op">+</span> [<span class="bu">float</span>(s) <span class="cf">for</span> s <span class="kw">in</span> summary.coefficientStandardErrors]</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>tvals <span class="op">=</span> [<span class="va">None</span>] <span class="op">+</span> [<span class="bu">float</span>(t) <span class="cf">for</span> t <span class="kw">in</span> summary.tValues]</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>pvals <span class="op">=</span> [<span class="va">None</span>] <span class="op">+</span> [<span class="bu">float</span>(p) <span class="cf">for</span> p <span class="kw">in</span> summary.pValues]</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [Row(</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    Feature<span class="op">=</span>f,</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    Coefficient<span class="op">=</span>c,</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    StdError<span class="op">=</span>s,</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    TValue<span class="op">=</span>t,</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    PValue<span class="op">=</span>p</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>) <span class="cf">for</span> f, c, s, t, p <span class="kw">in</span> <span class="bu">zip</span>(features, coefs, se, tvals, pvals)]</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>coefs_df <span class="op">=</span> spark.createDataFrame(rows)</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>coefs_df.show(truncate<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
+<pre><code>[Stage 45:&gt;                                                         (0 + 1) / 1]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+-------------------------------------------+------------------+------------------+-------------------+----------------------+
@@ -390,32 +414,35 @@ only showing top 5 rows
 +-------------------------------------------+------------------+------------------+-------------------+----------------------+
 </code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>                                                                                </code></pre>
+</div>
 </div>
 <p><em>The linear regression model uses salary as the dependent variable and includes predictors such as years of experience, education level, and specialized occupation. The intercept of approximately $37,893 represents the baseline salary for a Data Analyst (the reference category) with zero years of experience and the minimum education level. While this specific scenario may not occur in practice, it anchors the model and allows for meaningful interpretation of the other coefficients. Importantly, the model uses Data Analyst as the base class for comparison across occupational groups.</em></p>
 <p><em>Years of experience and education level both have strong, positive, and statistically significant effects on salary. Each additional year of experience increases predicted salary by about $5,333, and each additional level of education increases it by approximately $18,650, holding other factors constant. These findings align with expectations and underscore the value of experience and advanced education in driving compensation. Their p-values are well below 0.05, indicating high statistical confidence in their effects.</em></p>
 <p><em>The model also highlights significant salary differences across occupations relative to Data Analysts. Roles such as General ERP Analyst/Consultant (+$41K), Enterprise Architect (+$34K), and SAP Analyst/Admin (+$29K) command substantially higher salaries, and these differences are statistically significant. Meanwhile, occupations like Healthcare Analyst and Marketing Analyst show modest increases (+$3.2K and +$2.6K respectively), but their p-values suggest these effects are not statistically significant, and may be due to chance. This variation suggests that certain technical and ERP-related roles are rewarded more highly in the market.</em></p>
-<div id="cell-12" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictions on test set</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> lr_model.transform(test_data)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation metrics</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>evaluator_r2 <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"r2"</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>evaluator_rmse <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"rmse"</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>evaluator_mae <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"mae"</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> evaluator_r2.evaluate(predictions)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> evaluator_rmse.evaluate(predictions)</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> evaluator_mae.evaluate(predictions)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print evaluation metrics</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Model Performance on Test Data ---"</span>)</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R²: </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE: </span><span class="sc">{</span>mae<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-13" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictions on test set</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> lr_model.transform(test_data)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation metrics</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>evaluator_r2 <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"r2"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>evaluator_rmse <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"rmse"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>evaluator_mae <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"mae"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> evaluator_r2.evaluate(predictions)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> evaluator_rmse.evaluate(predictions)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> evaluator_mae.evaluate(predictions)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print evaluation metrics</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Model Performance on Test Data ---"</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R²: </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE: </span><span class="sc">{</span>mae<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>[Stage 120:&gt;                                                        (0 + 1) / 1]</code></pre>
+<pre><code>[Stage 49:&gt;                                                         (0 + 1) / 1]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -445,72 +472,72 @@ MAE: 23743.16</code></pre>
 <li><strong>Histogram of Residuals</strong></li>
 <li><strong>QQ Plot of Residuals</strong></li>
 </ol>
-<div id="cell-15" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert summary predictions to pandas DataFrame</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>df_pred <span class="op">=</span> summary.predictions.select(<span class="st">"SALARY"</span>, <span class="st">"prediction"</span>).toPandas()</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute residuals</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"residuals"</span>] <span class="op">=</span> df_pred[<span class="st">"SALARY"</span>] <span class="op">-</span> df_pred[<span class="st">"prediction"</span>]</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"fitted"</span>] <span class="op">=</span> df_pred[<span class="st">"prediction"</span>]</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardized residuals</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>res_mean <span class="op">=</span> df_pred[<span class="st">"residuals"</span>].mean()</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>res_std <span class="op">=</span> df_pred[<span class="st">"residuals"</span>].std()</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"std_residuals"</span>] <span class="op">=</span> (df_pred[<span class="st">"residuals"</span>] <span class="op">-</span> res_mean) <span class="op">/</span> res_std</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Square root of standardized residuals</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"sqrt_std_resid"</span>] <span class="op">=</span> np.sqrt(np.<span class="bu">abs</span>(df_pred[<span class="st">"std_residuals"</span>]))</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot diagnostics</span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">12</span>))</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Residuals vs Fitted</span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"fitted"</span>, y<span class="op">=</span><span class="st">"residuals"</span>, data<span class="op">=</span>df_pred)</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuals vs Fitted"</span>)</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted Values"</span>)</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Residuals"</span>)</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: QQ Plot</span></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>stats.probplot(df_pred[<span class="st">"residuals"</span>], dist<span class="op">=</span><span class="st">"norm"</span>, plot<span class="op">=</span>plt)</span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Normal Q-Q"</span>)</span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 3: Scale-Location (sqrt std residuals vs fitted)</span></span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"fitted"</span>, y<span class="op">=</span><span class="st">"sqrt_std_resid"</span>, data<span class="op">=</span>df_pred)</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scale-Location"</span>)</span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted Values"</span>)</span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"√|Standardized Residuals|"</span>)</span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 4: Residuals vs Leverage (approximation using fitted)</span></span>
-<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"fitted"</span>, y<span class="op">=</span><span class="st">"std_residuals"</span>, data<span class="op">=</span>df_pred)</span>
-<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuals vs Leverage (approx.)"</span>)</span>
-<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted Values"</span>)</span>
-<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Standardized Residuals"</span>)</span>
-<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Save and show</span></span>
-<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"_output/glr_diagnostic_classic.png"</span>)</span>
-<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-16" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert summary predictions to pandas DataFrame</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>df_pred <span class="op">=</span> summary.predictions.select(<span class="st">"SALARY"</span>, <span class="st">"prediction"</span>).toPandas()</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute residuals</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"residuals"</span>] <span class="op">=</span> df_pred[<span class="st">"SALARY"</span>] <span class="op">-</span> df_pred[<span class="st">"prediction"</span>]</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"fitted"</span>] <span class="op">=</span> df_pred[<span class="st">"prediction"</span>]</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardized residuals</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>res_mean <span class="op">=</span> df_pred[<span class="st">"residuals"</span>].mean()</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>res_std <span class="op">=</span> df_pred[<span class="st">"residuals"</span>].std()</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"std_residuals"</span>] <span class="op">=</span> (df_pred[<span class="st">"residuals"</span>] <span class="op">-</span> res_mean) <span class="op">/</span> res_std</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Square root of standardized residuals</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>df_pred[<span class="st">"sqrt_std_resid"</span>] <span class="op">=</span> np.sqrt(np.<span class="bu">abs</span>(df_pred[<span class="st">"std_residuals"</span>]))</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot diagnostics</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">12</span>))</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Residuals vs Fitted</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"fitted"</span>, y<span class="op">=</span><span class="st">"residuals"</span>, data<span class="op">=</span>df_pred)</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuals vs Fitted"</span>)</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted Values"</span>)</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Residuals"</span>)</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: QQ Plot</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>stats.probplot(df_pred[<span class="st">"residuals"</span>], dist<span class="op">=</span><span class="st">"norm"</span>, plot<span class="op">=</span>plt)</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Normal Q-Q"</span>)</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 3: Scale-Location (sqrt std residuals vs fitted)</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"fitted"</span>, y<span class="op">=</span><span class="st">"sqrt_std_resid"</span>, data<span class="op">=</span>df_pred)</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scale-Location"</span>)</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted Values"</span>)</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"√|Standardized Residuals|"</span>)</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 4: Residuals vs Leverage (approximation using fitted)</span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"fitted"</span>, y<span class="op">=</span><span class="st">"std_residuals"</span>, data<span class="op">=</span>df_pred)</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuals vs Leverage (approx.)"</span>)</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted Values"</span>)</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Standardized Residuals"</span>)</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Save and show</span></span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"_output/glr_diagnostic_classic.png"</span>)</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>                                                                                </code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lab08-prabu_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="lab08-prabu_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -543,50 +570,50 @@ MAE: 23743.16</code></pre>
 <section id="evaluation" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Evaluation</h1>
 <p>The evaluation of the model is crucial to understand its performance. In this section, we will calculate and visualize the following metrics: 1. <strong>R² (Coefficient of Determination)</strong>: Indicates how well the model explains the variance in the target variable. 2. <strong>RMSE (Root Mean Squared Error)</strong>: Measures the average magnitude of the errors between predicted and actual values.</p>
-<div id="cell-18" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col, <span class="bu">pow</span>, sqrt, avg, count</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictions on test set</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>pred_glr <span class="op">=</span> lr_model.transform(test_data)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- R² using PySpark Evaluator ---</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>r2_eval <span class="op">=</span> RegressionEvaluator(</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"r2"</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_eval.evaluate(pred_glr)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- RMSE using PySpark Evaluator ---</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>rmse_eval <span class="op">=</span> RegressionEvaluator(</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"rmse"</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> rmse_eval.evaluate(pred_glr)</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co"># --- MAE using PySpark Evaluator (optional) ---</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>mae_eval <span class="op">=</span> RegressionEvaluator(</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"mae"</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> mae_eval.evaluate(pred_glr)</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Manually calculate RSS, n, k, BIC (optional) ---</span></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>residuals_df <span class="op">=</span> pred_glr.withColumn(<span class="st">"residual_sq"</span>, <span class="bu">pow</span>(col(<span class="st">"SALARY"</span>) <span class="op">-</span> col(<span class="st">"prediction"</span>), <span class="dv">2</span>))</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>rss <span class="op">=</span> residuals_df.agg({<span class="st">"residual_sq"</span>: <span class="st">"sum"</span>}).first()[<span class="dv">0</span>]</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> pred_glr.count()  <span class="co"># number of observations</span></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">len</span>(lr_model.coefficients) <span class="op">+</span> <span class="dv">1</span>  <span class="co"># number of features including intercept</span></span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="co"># --- BIC formula: n * log(RSS/n) + k * log(n) ---</span></span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>bic <span class="op">=</span> n <span class="op">*</span> np.log(rss <span class="op">/</span> n) <span class="op">+</span> k <span class="op">*</span> np.log(n)</span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Display evaluation results</span></span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Model Evaluation Metrics ---"</span>)</span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R²: </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE: </span><span class="sc">{</span>mae<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"BIC: </span><span class="sc">{</span>bic<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col, <span class="bu">pow</span>, sqrt, avg, count</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictions on test set</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>pred_glr <span class="op">=</span> lr_model.transform(test_data)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- R² using PySpark Evaluator ---</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>r2_eval <span class="op">=</span> RegressionEvaluator(</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"r2"</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_eval.evaluate(pred_glr)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- RMSE using PySpark Evaluator ---</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>rmse_eval <span class="op">=</span> RegressionEvaluator(</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"rmse"</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> rmse_eval.evaluate(pred_glr)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co"># --- MAE using PySpark Evaluator (optional) ---</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>mae_eval <span class="op">=</span> RegressionEvaluator(</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"mae"</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> mae_eval.evaluate(pred_glr)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Manually calculate RSS, n, k, BIC (optional) ---</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>residuals_df <span class="op">=</span> pred_glr.withColumn(<span class="st">"residual_sq"</span>, <span class="bu">pow</span>(col(<span class="st">"SALARY"</span>) <span class="op">-</span> col(<span class="st">"prediction"</span>), <span class="dv">2</span>))</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>rss <span class="op">=</span> residuals_df.agg({<span class="st">"residual_sq"</span>: <span class="st">"sum"</span>}).first()[<span class="dv">0</span>]</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> pred_glr.count()  <span class="co"># number of observations</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">len</span>(lr_model.coefficients) <span class="op">+</span> <span class="dv">1</span>  <span class="co"># number of features including intercept</span></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="co"># --- BIC formula: n * log(RSS/n) + k * log(n) ---</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>bic <span class="op">=</span> n <span class="op">*</span> np.log(rss <span class="op">/</span> n) <span class="op">+</span> k <span class="op">*</span> np.log(n)</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Display evaluation results</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Model Evaluation Metrics ---"</span>)</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R²: </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE: </span><span class="sc">{</span>mae<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"BIC: </span><span class="sc">{</span>bic<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>[Stage 128:&gt;                                                        (0 + 1) / 1]</code></pre>
+<pre><code>[Stage 57:&gt;                                                         (0 + 1) / 1]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--- Model Evaluation Metrics ---
@@ -600,7 +627,7 @@ BIC: 83073.89</code></pre>
 </div>
 </div>
 <ul>
-<li><p><em>The R-squared value is 0.4136, which means the model is able to explain around 41% of the variance in salaries. That’s a reasonably good starting point, especially considering the complexity and noise in salary data.</em></p></li>
+<li><p><em>The R-squared value is 0.4136,the model is able to explain around 41% of the variance in salaries. That’s a reasonably good starting point, especially considering the complexity and noise in salary data.</em></p></li>
 <li><p><em>The RMSE is approximately 30,386, which means that on average, the predicted salaries deviate from the actual salaries by about $30K. Similarly, the MAE is around 23,743, which is a more robust metric showing that the average absolute error is nearly $24K.</em></p></li>
 <li><p><em>Finally, the BIC value is 83,073.89. Since BIC penalizes overly complex models, this value gives us a way to compare this model against others in terms of both fit and simplicity — lower BIC is better.</em></p></li>
 </ul>
@@ -613,85 +640,85 @@ BIC: 83073.89</code></pre>
 <li>Customize the plot with appropriate titles, labels, and legends.</li>
 <li>Describe the plot in a few sentences, highlighting key insights and observations.</li>
 </ul>
-<div id="cell-21" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.regression <span class="im">import</span> GeneralizedLinearRegression</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Fit GLR model instead of LinearRegression</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>glr <span class="op">=</span> GeneralizedLinearRegression(</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    featuresCol<span class="op">=</span><span class="st">"features"</span>,</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>,</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    family<span class="op">=</span><span class="st">"gaussian"</span>,</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    link<span class="op">=</span><span class="st">"identity"</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>glr_model <span class="op">=</span> glr.fit(train_data)</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> glr_model.summary</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Predict on test data</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>pred_glr <span class="op">=</span> glr_model.transform(test_data)</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Convert predictions to Pandas</span></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>pandas_df <span class="op">=</span> pred_glr.select(<span class="st">"SALARY"</span>, <span class="st">"prediction"</span>).toPandas()</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Evaluation Metrics</span></span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="co"># R²</span></span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>r2_eval <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"r2"</span>)</span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_eval.evaluate(pred_glr)</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE</span></span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>rmse_eval <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"rmse"</span>)</span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> rmse_eval.evaluate(pred_glr)</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="co"># AIC (now available from GLR model)</span></span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>aic <span class="op">=</span> summary.aic</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a><span class="co"># BIC (manual)</span></span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> pred_glr.count()  <span class="co"># number of observations</span></span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">len</span>(glr_model.coefficients) <span class="op">+</span> <span class="dv">1</span>  <span class="co"># predictors incl. intercept</span></span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>rss <span class="op">=</span> summary.deviance  <span class="co"># equivalent to RSS in Gaussian family</span></span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>bic <span class="op">=</span> n <span class="op">*</span> np.log(rss <span class="op">/</span> n) <span class="op">+</span> k <span class="op">*</span> np.log(n)</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Plot</span></span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>pandas_df, x<span class="op">=</span><span class="st">"SALARY"</span>, y<span class="op">=</span><span class="st">"prediction"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, s<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a><span class="co"># y = x reference line</span></span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>min_val <span class="op">=</span> <span class="bu">min</span>(pandas_df[<span class="st">"SALARY"</span>].<span class="bu">min</span>(), pandas_df[<span class="st">"prediction"</span>].<span class="bu">min</span>())</span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>max_val <span class="op">=</span> <span class="bu">max</span>(pandas_df[<span class="st">"SALARY"</span>].<span class="bu">max</span>(), pandas_df[<span class="st">"prediction"</span>].<span class="bu">max</span>())</span>
-<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>plt.plot([min_val, max_val], [min_val, max_val], color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Ideal Fit"</span>)</span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization</span></span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Actual Salary (USD)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Predicted Salary (USD)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title(</span></span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a><span class="co">#     f"Predicted vs Actual Salary (GLR Model)\n"</span></span>
-<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a><span class="co">#     f"RMSE = {rmse:.2f} | R² = {r2:.4f} | AIC = {aic:.2f} | BIC = {bic:.2f}",</span></span>
-<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a><span class="co">#     loc="left", fontsize=13, fontweight="bold"</span></span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>plt.title(</span>
-<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Predicted vs Actual Salary (GLR Model)</span><span class="ch">\n</span><span class="ss">"</span></span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"RMSE = </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss"> | R² = </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss"> | AIC = </span><span class="sc">{</span>aic<span class="sc">:.2f}</span><span class="ss"> | BIC = </span><span class="sc">{</span>bic<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
-<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>    loc<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span></span>
-<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"_output/glr_predicted_vs_actual.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-22" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.regression <span class="im">import</span> GeneralizedLinearRegression</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.ml.evaluation <span class="im">import</span> RegressionEvaluator</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Fit GLR model instead of LinearRegression</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>glr <span class="op">=</span> GeneralizedLinearRegression(</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    featuresCol<span class="op">=</span><span class="st">"features"</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    labelCol<span class="op">=</span><span class="st">"SALARY"</span>,</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    family<span class="op">=</span><span class="st">"gaussian"</span>,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    link<span class="op">=</span><span class="st">"identity"</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>glr_model <span class="op">=</span> glr.fit(train_data)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> glr_model.summary</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Predict on test data</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>pred_glr <span class="op">=</span> glr_model.transform(test_data)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Convert predictions to Pandas</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>pandas_df <span class="op">=</span> pred_glr.select(<span class="st">"SALARY"</span>, <span class="st">"prediction"</span>).toPandas()</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Evaluation Metrics</span></span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="co"># R²</span></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>r2_eval <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"r2"</span>)</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_eval.evaluate(pred_glr)</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE</span></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>rmse_eval <span class="op">=</span> RegressionEvaluator(labelCol<span class="op">=</span><span class="st">"SALARY"</span>, predictionCol<span class="op">=</span><span class="st">"prediction"</span>, metricName<span class="op">=</span><span class="st">"rmse"</span>)</span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> rmse_eval.evaluate(pred_glr)</span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a><span class="co"># AIC (now available from GLR model)</span></span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>aic <span class="op">=</span> summary.aic</span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a><span class="co"># BIC (manual)</span></span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> pred_glr.count()  <span class="co"># number of observations</span></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">len</span>(glr_model.coefficients) <span class="op">+</span> <span class="dv">1</span>  <span class="co"># predictors incl. intercept</span></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>rss <span class="op">=</span> summary.deviance  <span class="co"># equivalent to RSS in Gaussian family</span></span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>bic <span class="op">=</span> n <span class="op">*</span> np.log(rss <span class="op">/</span> n) <span class="op">+</span> k <span class="op">*</span> np.log(n)</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Plot</span></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>pandas_df, x<span class="op">=</span><span class="st">"SALARY"</span>, y<span class="op">=</span><span class="st">"prediction"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a><span class="co"># y = x reference line</span></span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>min_val <span class="op">=</span> <span class="bu">min</span>(pandas_df[<span class="st">"SALARY"</span>].<span class="bu">min</span>(), pandas_df[<span class="st">"prediction"</span>].<span class="bu">min</span>())</span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>max_val <span class="op">=</span> <span class="bu">max</span>(pandas_df[<span class="st">"SALARY"</span>].<span class="bu">max</span>(), pandas_df[<span class="st">"prediction"</span>].<span class="bu">max</span>())</span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>plt.plot([min_val, max_val], [min_val, max_val], color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Ideal Fit"</span>)</span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization</span></span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Actual Salary (USD)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Predicted Salary (USD)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title(</span></span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a><span class="co">#     f"Predicted vs Actual Salary (GLR Model)\n"</span></span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a><span class="co">#     f"RMSE = {rmse:.2f} | R² = {r2:.4f} | AIC = {aic:.2f} | BIC = {bic:.2f}",</span></span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a><span class="co">#     loc="left", fontsize=13, fontweight="bold"</span></span>
+<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a>plt.title(</span>
+<span id="cb30-62"><a href="#cb30-62" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Predicted vs Actual Salary (GLR Model)</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb30-63"><a href="#cb30-63" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"RMSE = </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss"> | R² = </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss"> | AIC = </span><span class="sc">{</span>aic<span class="sc">:.2f}</span><span class="ss"> | BIC = </span><span class="sc">{</span>bic<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a>    loc<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span></span>
+<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-66"><a href="#cb30-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-67"><a href="#cb30-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-68"><a href="#cb30-68" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb30-69"><a href="#cb30-69" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"_output/glr_predicted_vs_actual.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb30-70"><a href="#cb30-70" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>25/04/06 19:55:23 WARN Instrumentation: [40493287] regParam is zero, which might cause numerical instability and overfitting.
-                                                                                </code></pre>
+<pre><code>25/04/09 15:58:03 WARN Instrumentation: [e25f5bb9] regParam is zero, which might cause numerical instability and overfitting.
+[Stage 60:&gt;                                                         (0 + 1) / 1]                                                                                </code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lab08-prabu_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="lab08-prabu_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -710,9 +737,9 @@ BIC: 83073.89</code></pre>
 <li>Save figures in the <code>_output/</code> folder.</li>
 <li>Commit and push code and output files:</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add Lab 08 Salary Prediction models and output"</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add Lab 08 Salary Prediction models and output"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
 <li>Submit your GitHub repository link.</li>
 </ol>
